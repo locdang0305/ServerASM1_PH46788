@@ -9,6 +9,12 @@ router.get('/', (req, res) => {
 })
 const mongoose = require('mongoose');
 
+const bodyParser = require("body-parser");
+
+router.use(bodyParser.json());
+
+router.use(bodyParser.urlencoded({extended: true}));
+
 const carModel = require('./carModel');
 
 const uri = 'mongodb+srv://locdhph46788:GSYKojokPTYz9hny@cluster0.utdnbcv.mongodb.net/asm_ph46788'
@@ -32,5 +38,14 @@ router.post('/add_car', async (req, res) => {
     let cars = await carModel.find();
 
     res.send(cars);
+})
+router.delete('/del_car/:id', async (req, res) => {
+    await mongoose.connect(uri);
+
+    let id = req.params.id;
+
+    await carModel.deleteOne({_id: id});
+
+    res.redirect('../')
 })
 
