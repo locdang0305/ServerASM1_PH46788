@@ -46,6 +46,23 @@ router.delete('/del_car/:id', async (req, res) => {
 
     await carModel.deleteOne({_id: id});
 
-    res.redirect('../')
+    let cars = await carModel.find();
+
+    res.send(cars);
+
+})
+router.put('/update_car/:id', async (req, res) => {
+
+    await mongoose.connect(uri);
+
+    let id = req.params.id;
+
+    let car = req.body;
+
+    await carModel.updateOne({_id: id}, car);
+
+    let cars = await carModel.find({});
+
+    res.send(cars);
 })
 

@@ -34,6 +34,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Node.js.api.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
@@ -62,6 +63,13 @@
       <workItem from="1711161592276" duration="363000" />
       <workItem from="1711167124870" duration="3368000" />
       <workItem from="1711170932005" duration="223000" />
+      <workItem from="1711177258121" duration="916000" />
+      <workItem from="1711178807800" duration="802000" />
+      <workItem from="1711179890956" duration="972000" />
+      <workItem from="1711180945764" duration="827000" />
+      <workItem from="1711182054595" duration="2418000" />
+      <workItem from="1711203298682" duration="658000" />
+      <workItem from="1711208041370" duration="3012000" />
     </task>
     <servers />
   </component>
