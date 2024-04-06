@@ -13,12 +13,12 @@ const carSchema = mongoose.Schema({
         type: Number,
         require: true
     },
-    status: {
+    statuss: {
         type: Boolean,
         require: true
     },
     image: {
-        type: String,
+        type: Array,
     }
 })
 

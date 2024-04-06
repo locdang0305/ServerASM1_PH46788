@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 
 const carModel = require('./carModel');
 
-const uri = 'mongodb+srv://locdhph46788:GSYKojokPTYz9hny@cluster0.utdnbcv.mongodb.net/asm_ph46788'
+const uri = 'mongodb+srv://locdhph46788:FszeNPgTfPiW6HkD@cluster0.utdnbcv.mongodb.net/asm_ph46788'
 
 const api = require('./api');
 app.use('/api', api);

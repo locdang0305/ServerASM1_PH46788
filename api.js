@@ -17,17 +17,65 @@ router.use(bodyParser.urlencoded({extended: true}));
 
 const carModel = require('./carModel');
 
-const uri = 'mongodb+srv://locdhph46788:GSYKojokPTYz9hny@cluster0.utdnbcv.mongodb.net/asm_ph46788'
+const uri = 'mongodb+srv://locdhph46788:FszeNPgTfPiW6HkD@cluster0.utdnbcv.mongodb.net/asm_ph46788'
 
 router.get('/list', async (req, res) => {
     await mongoose.connect(uri);
-
-    let cars = await carModel.find();
-
-    console.log(cars);
-
-    res.send(cars);
+    try {
+        const data = await carModel.find().populate();
+        res.json({
+            "status": 200,
+            "messenger": "Danh sách xe",
+            "data": data
+        })
+    } catch (error) {
+        console.log(error);
+    }
 })
+router.get('/search_car', async (req, res) => {
+    try {
+        const key = req.query.key
+        const data = await carModel.find({name: {"$regex": key, "$options": "i"}}).populate()
+            .sort({createdAt: -1});
+        if (data) {
+            res.json({
+                "status": 200,
+                "messenger": "Thành công",
+                "data": data
+            })
+        } else {
+            res.json({
+                "status": 400,
+                "messenger": "Lỗi, không thành công",
+                "data": []
+            })
+        }
+    } catch (error) {
+        console.log(error);
+    }
+})
+router.get('/sort_by_price', async (req, res) => {
+    try {
+        const order = req.query.order || 'asc';
+        const data = await carModel.find().sort({price: order === 'desc' ? -1 : 1})
+        if (data) {
+            res.json({
+                "status": 200,
+                "messenger": "Thành công",
+                "data": data
+            })
+        } else {
+            res.json({
+                "status": 400,
+                "messenger": "Lỗi, không thành công",
+                "data": []
+            })
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+});
 router.post('/add_car', async (req, res) => {
     await mongoose.connect(uri);
 
@@ -49,7 +97,6 @@ router.delete('/del_car/:id', async (req, res) => {
     let cars = await carModel.find();
 
     res.send(cars);
-
 })
 router.put('/update_car/:id', async (req, res) => {
 
@@ -65,4 +112,7 @@ router.put('/update_car/:id', async (req, res) => {
 
     res.send(cars);
 })
+
+
+
 
